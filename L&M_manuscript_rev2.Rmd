@@ -1,0 +1,391 @@
+---
+title: "R Notebook for Feliciano-Ramos et al., 2023"
+output:
+  html_notebook: default
+  pdf_document: default
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. 
+
+To perform statistical analysis you need to download the R functions from
+https://dornsife.usc.edu/labs/rwilcox/software/ or from github
+https://github.com/nicebread/WRS 
+
+```{r}
+# Make sure the code is in your path
+source("Rallfun-v40.txt")
+```
+
+### supplementary Figure 2 E1
+RTC AND PFC ON and OFF duration distributions
+```{r}
+suppFig1E1 <- read.csv("suppFig1E1.txt")
+boxplot(suppFig1E1)
+summary(suppFig1E1)
+btrim(suppFig1E1, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+linconbt(suppFig1E1, con=0, tr=0.2, alpha=0.05, nboot=599) # 20% trimmed group means with bootstrap-t method
+# lincon(suppFig1E1, con=0, tr=0.2, alpha=0.05) # without bootstrap-t
+```
+### supplementary Figure 2 F1
+RTC AND PFC ON and OFF inter event interval(IEI) distributions
+```{r}
+suppFig1F1 <- read.csv("suppFig1F1.txt ")
+boxplot(suppFig1F1)
+summary(suppFig1F1)
+btrim(suppFig1F1, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+linconb(suppFig1F1,con=0,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+
+### Figure 3A
+One-Way Robust Testing see: chapter 7 Introduction to Robust Estimation and hypothesis Testing
+```{r}
+data_fig3A <- read.csv("fig3A.txt ")
+boxplot(data_fig3A)
+summary(data_fig3A)
+btrim(data_fig3A, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+M = cbind(c(1,-1,0,0),c(0,0,1,-1)) # matrix for group testing
+linconb(data_fig3A,con=0,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+#med1way(data_fig3A1) 
+```
+### supplementary Figure 3A1
+One-Way Robust Testing see
+```{r}
+supp_data_fig3A1 <- read.csv("suppFig3A1.txt ")
+boxplot(supp_data_fig3A1)
+summary(supp_data_fig3A1)
+btrim(supp_data_fig3A1, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+M = cbind(c(1,-1,0,0),c(0,0,1,-1)) # matrix for group testing
+linconb(supp_data_fig3A1,con=0,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+### supplementary Figure 3B1
+One-Way Robust Testing
+```{r}
+supp_data_fig3B1 <- read.csv("suppFig3B1.txt ")
+boxplot(supp_data_fig3B1)
+summary(supp_data_fig3B1)
+btrim(supp_data_fig3B1, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+M = cbind(c(1,-1,0,0),c(0,0,1,-1)) # matrix for group testing
+linconb(supp_data_fig3B1,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+
+### Figure 3B
+```{r}
+data_fig3B <- read.csv("fig3B.txt ")
+boxplot(data_fig3B)
+summary(data_fig3B)
+btrim(data_fig3B, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+M = cbind(c(1,-1,0,0,0,0),c(0,0,1,-1,0,0),c(0,0,0,0,1,-1)) # matrix for group testing
+linconb(data_fig3B,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+
+### supplementary Figure 3A2
+RTC vs Shuffles for Ripples occurring during cortical ON periods
+```{r}
+supp_fig3A2 <- read.csv("suppFig3A2.txt ")
+boxplot(supp_fig3A2)
+summary(supp_fig3A2) 
+btrim(supp_fig3A2, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+M = cbind(c(1,-1,0,0,0,0),c(0,0,1,-1,0,0),c(0,0,0,0,1,-1), c(0,1,0,-1,0,0)) # matrix for group testing
+linconb(supp_fig3A2,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+### supplementary Figure 3B2
+PFC vs Shuffles for Ripples occurring during cortical ON periods
+```{r}
+supp_data_fig3B2 <- read.csv("suppFig3B2.txt ")
+boxplot(supp_data_fig3B2)
+summary(supp_data_fig3B2)
+btrim(supp_data_fig3B2, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+M = cbind(c(1,-1,0,0,0,0),c(0,0,1,-1,0,0),c(0,0,0,0,1,-1), c(0,1,0,-1,0,0)) # matrix for group testing
+linconb(supp_data_fig3B2,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+
+## Figure 3C
+RTC vs PFC Down-states configurations
+```{r}
+data_fig3C <- read.csv("fig3C.txt ")
+boxplot(data_fig3C)
+summary(data_fig3C)
+btrim(data_fig3C, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+M = cbind(c(1,-1,0,0,0,0),c(0,0,1,-1,0,0),c(0,0,0,0,1,-1)) # matrix for group testing
+linconb(data_fig3C,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+
+## Supplementary Figure 3A3
+```{r}
+supp_data_fig3A3 <- read.csv("suppFig3A3.txt ")
+boxplot(supp_data_fig3A3)
+summary(supp_data_fig3A3)
+btrim(supp_data_fig3A3, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+M = cbind(c(1,-1,0,0,0,0),c(0,0,1,-1,0,0),c(0,0,0,0,1,-1), c(0,1,0,-1,0,0)) # matrix for group testing
+linconb(supp_data_fig3A3,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+
+## Supplementary Figure 3B3
+```{r}
+supp_data_fig3B3 <- read.csv("suppFig3B3.txt ")
+boxplot(supp_data_fig3B3)
+summary(supp_data_fig3B3)
+btrim(supp_data_fig3B3, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+M = cbind(c(1,-1,0,0,0,0),c(0,0,1,-1,0,0),c(0,0,0,0,1,-1), c(0,1,0,-1,0,0)) # matrix for group testing
+linconb(supp_data_fig3B3,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+
+### supplementary Figure 3C1
+RTC and PFC vs Shuffles Ratio
+```{r}
+supp_data_fig3C1 <- read.csv("suppFig3C1.txt ")
+boxplot(supp_data_fig3C1)
+summary(supp_data_fig3C1)
+btrim(supp_data_fig3C1, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+M = cbind(c(1,0,-1,0,0,0),c(0,1,-1,0,0,0),c(0,0,-1,1,0,0),c(0,0,-1,0,-1,0),c(0,0,-1,0,0,-1)) # matrix for group testing
+linconb(supp_data_fig3C1,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+
+### supplementary Figure 3C2
+RTC and PFC vs Down Shuffles Ratio
+```{r}
+supp_data_fig3C2 <- read.csv("suppFig3C2.txt ")
+boxplot(supp_data_fig3C2)
+summary(supp_data_fig3C2)
+btrim(supp_data_fig3C2, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+M = cbind(c(1,0,-1,0,0,0),c(0,1,-1,0,0,0),c(0,0,-1,1,0,0),c(0,0,-1,0,-1,0),c(0,0,-1,0,0,-1)) # matrix for group testing
+linconb(supp_data_fig3C2,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+
+### supplementary Figure 3D
+One-Way Robust Testing
+```{r}
+supp_data_fig3D <- read.csv("suppFig3D.txt")
+boxplot(supp_data_fig3D)
+summary(supp_data_fig3D)
+btrim(supp_data_fig3D, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+M = cbind(c(1,-1,0,0),c(0,0,1,-1)) # matrix for group testing
+linconb(supp_data_fig3D,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+
+### supplementary Figure 3E1
+One-Way Robust Testing
+```{r}
+supp_data_fig3E1 <- read.csv("suppFig3E1.txt")
+boxplot(supp_data_fig3E1)
+summary(supp_data_fig3E1)
+btrim(supp_data_fig3E1, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+M = cbind(c(1,-1,0,0),c(0,0,1,-1)) # matrix for group testing
+linconb(supp_data_fig3E1,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+
+### supplementary Figure 3E2
+One-Way Robust Testing
+```{r}
+supp_data_fig3E2 <- read.csv("suppFig3E2.txt")
+boxplot(supp_data_fig3E2)
+summary(supp_data_fig3E2)
+```
+
+
+
+### supplementary Figure 4
+Peak Amplitude Down-onset
+```{r}
+data_fig4B3 <- read.csv("fig4B3.txt ")
+boxplot(data_fig4B3)
+summary(data_fig4B3)
+# Bootstrap-t Methods for Comparing trimmed means
+yuenbt(data_fig4B3[,1],data_fig4B3[,2],tr=0.2,alpha=0.05,nboot=599,side=F)
+ESfun(data_fig4B3[,1],data_fig4B3[,2]) # explanatory power
+trimpb2(data_fig4B3[,1],data_fig4B3[,2],tr=0.2,alpha=0.05,nboot=2000,WIN=F,win=0.1)
+```
+
+### supplementary Figure 5 A1
+Peak Amplitude Down-onset
+```{r}
+suppFig4A1 <- read.csv("suppFig4A1.txt ")
+boxplot(suppFig4A1)
+summary(suppFig4A1)
+# Bootstrap-t Methods for Comparing trimmed means
+yuenbt(suppFig4A1[,1],suppFig4A1[,2],tr=0.2,alpha=0.05,nboot=599,side=F)
+ESfun(suppFig4A1[,1],suppFig4A1[,2]) # explanatory power
+trimpb2(suppFig4A1[,1],suppFig4A1[,2],tr=0.2,alpha=0.05,nboot=2000,WIN=F,win=0.1)
+```
+### Supplementary Figure 5 A2
+Down-state onset Variance after a SWR
+```{r}
+suppFig4A2 <- read.csv("suppFig4A2.txt ")
+boxplot(suppFig4A2)
+summary(suppFig4A2)
+# Bootstrap-t Methods for Comparing trimmed means
+yuenbt(suppFig4A2[,1],suppFig4A2[,2],tr=0.2,alpha=0.05,nboot=599,side=F)
+ESfun(suppFig4A2[,1],suppFig4A2[,2]) # explanatory power
+trimpb2(suppFig4A2[,1],suppFig4A2[,2],tr=0.2,alpha=0.05,nboot=2000,WIN=F,win=0.1)
+```
+
+### supplementary Figure 5 A3
+Peak Timing of a Down-state onset
+```{r}
+suppFig4A3 <- read.csv("suppFig4A3.txt ")
+boxplot(suppFig4A3)
+summary(suppFig4A3)
+# Bootstrap-t Methods for Comparing trimmed means
+yuenbt(suppFig4A3[,1],suppFig4A3[,2],tr=0.2,alpha=0.05,nboot=599,side=F)
+ESfun(suppFig4A3[,1],suppFig4A3[,2]) # explanatory power
+trimpb2(suppFig4A3[,1],suppFig4A3[,2],tr=0.2,alpha=0.05,nboot=2000,WIN=F,win=0.1)
+```
+
+### supplementary Figure 5 A4
+Peak Timing of a Down-state onset
+```{r}
+suppFig4A4 <- read.csv("suppFig4A4.txt ")
+boxplot(suppFig4A4)
+summary(suppFig4A4)
+# Bootstrap-t Methods for Comparing trimmed means
+yuenbt(suppFig4A4[,1],suppFig4A4[,2],tr=0.2,alpha=0.05,nboot=599,side=F)
+ESfun(suppFig4A4[,1],suppFig4A4[,2]) # explanatory power
+trimpb2(suppFig4A4[,1],suppFig4A4[,2],tr=0.2,alpha=0.05,nboot=2000,WIN=F,win=0.1)
+```
+
+## supplementary Figure 5 B1 and B2
+```{r}
+suppFig5B1_2 <- read.csv("suppFig5B1_&B2.txt ")
+boxplot(suppFig5B1_2)
+summary(suppFig5B1_2)
+btrim(suppFig5B1_2, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+M = cbind(c(1,-1,0,0),c(0,0,1,-1),c(1,0,-1,0),c(0,1,0,-1)) # matrix for group testing
+linconb(suppFig5B1_2,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+
+### supplementary Figure 5 D2
+Peak Timing of a Down-state onset
+```{r}
+suppFig5D2 <- read.csv("suppFig5D2.txt ")
+boxplot(suppFig5D2)
+summary(suppFig5D2)
+# Bootstrap-t Methods for Comparing trimmed means
+yuenbt(suppFig5D2[,1],suppFig5D2[,2],tr=0.2,alpha=0.05,nboot=599,side=F)
+ESfun(suppFig5D2[,1],suppFig5D2[,2]) # explanatory power
+trimpb2(suppFig5D2[,1],suppFig5D2[,2],tr=0.2,alpha=0.05,nboot=2000,WIN=F,win=0.1)
+```
+### supplementary Figure 5 D4
+Peak Timing of a Down-state onset
+```{r}
+suppFig5D4 <- read.csv("suppFig5D4.txt ")
+boxplot(suppFig5D4)
+summary(suppFig5D4)
+# Bootstrap-t Methods for Comparing trimmed means
+yuenbt(suppFig5D4[,1],suppFig5D4[,2],tr=0.2,alpha=0.05,nboot=599,side=F)
+ESfun(suppFig5D4[,1],suppFig5D4[,2]) # explanatory power
+trimpb2(suppFig5D4[,1],suppFig5D4[,2],tr=0.2,alpha=0.05,nboot=2000,WIN=F,win=0.1)
+```
+## supplementary Figure 5 E2
+```{r}
+suppFig5E2 <- read.csv("suppFig5E2.txt ")
+boxplot(suppFig5E2)
+summary(suppFig5E2)
+btrim(suppFig5E2, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+M = cbind(c(1,-1,0,0),c(0,0,-1,0)) # matrix for group testing
+linconb(suppFig5E2,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+
+## supplementary Figure 5 E3
+```{r}
+suppFig5E3 <- read.csv("suppFig5E3.txt ")
+boxplot(suppFig5E3)
+summary(suppFig5E3)
+btrim(suppFig5E3, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+M = cbind(c(1,-1,0,0),c(0,0,1,-1)) # matrix for group testing
+linconb(suppFig5E3,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+```{r}
+suppFig5F2 <- read.csv("suppFig5F2.txt ")
+boxplot(suppFig5F2)
+summary(suppFig5F2)
+# Bootstrap-t Methods for Comparing trimmed means
+yuenbt(suppFig5F2[,1], suppFig5F2[,2],tr=0.2,alpha=0.05,nboot=599,side=F)
+ESfun(suppFig5F2[,1], suppFig5F2[,2]) # explanatory power
+trimpb2(suppFig5F2[,1], suppFig5F2[,2],tr=0.2,alpha=0.05,nboot=2000,WIN=F,win=0.1)
+```
+```{r}
+suppFig5F3 <- read.csv("suppFig5F3.txt ")
+boxplot(suppFig5F3)
+summary(suppFig5F3)
+# Bootstrap-t Methods for Comparing trimmed means
+yuenbt(suppFig5F3[,1], suppFig5F3[,2],tr=0.2,alpha=0.05,nboot=599,side=F)
+ESfun(suppFig5F3[,1], suppFig5F3[,2]) # explanatory power
+trimpb2(suppFig5F3[,1], suppFig5F3[,2],tr=0.2,alpha=0.05,nboot=2000,WIN=F,win=0.1)
+```
+
+### Figure 5 C1
+Replays and Coordination to UP and Down States of the RTC and PFC
+```{r}
+data_fig5C1 <- read.csv("fig5C1.txt ")
+boxplot(data_fig5C1[,1:4])
+summary(data_fig5C1)
+btrim(data_fig5C1[,1:4], tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+M = cbind(c(1,0,-1,0,0,0),c(0,1,-1,0,0,0),c(0,0,-1,1,0,0),c(0,0,-1,0,-1,0),c(0,0,-1,0,0,-1)) # matrix for group testing
+linconb(data_fig5C1[,1:4],con=0,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+
+### Figure 5 C2
+Replays and Coordination to UP and Down States of the RTC and PFC
+```{r}
+data_fig5C2 <- read.csv("fig5C2.txt ")
+data_fig5C2 <- data_fig5C2[, 1:6]
+boxplot(data_fig5C2)
+summary(data_fig5C2)
+btrim(data_fig5C2, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+M = cbind(c(1,0,-1,0,0,0),c(0,1,-1,0,0,0),c(0,0,-1,1,0,0),c(0,0,-1,0,-1,0),c(0,0,-1,0,0,-1)) # matrix for group testing
+linconb(data_fig5C2,con=0,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+
+## supplementary Figure 4  B1 and B2
+uncategorized SWR from RTC
+```{r}
+suppFig3B_B <- read.csv("suppFig3B_B.txt ")
+boxplot(suppFig3B_B)
+summary(suppFig3B_B)
+M = cbind(c(1,-1,0,0),c(0,0,1,-1)) # matrix for group testing
+linconb(suppFig3B_B,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+
+## supplementary Figure 4 C1 and C2
+uncategorized SWR from RTC
+```{r}
+suppFig3C_C <- read.csv("suppFig3C_C.txt ")
+boxplot(suppFig3C_C)
+summary(suppFig3C_C)
+M = cbind(c(1,-1,0,0),c(0,0,1,-1)) # matrix for group testing
+linconb(suppFig3C_C,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
