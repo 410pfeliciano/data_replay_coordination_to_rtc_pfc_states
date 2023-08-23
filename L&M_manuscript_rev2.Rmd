@@ -184,8 +184,8 @@ summary(supp_data_fig3E2)
 
 
 
-### supplementary Figure 4
-Peak Amplitude Down-onset
+### Figure 4
+Down-State Delta Angle Distribution
 ```{r}
 data_fig4B3 <- read.csv("fig4B3.txt ")
 boxplot(data_fig4B3)
@@ -254,7 +254,7 @@ linconb(suppFig5B1_2,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group mean
 ```
 
 ### supplementary Figure 5 D2
-Peak Timing of a Down-state onset
+Sust. UP-State MUA RTC
 ```{r}
 suppFig5D2 <- read.csv("suppFig5D2.txt ")
 boxplot(suppFig5D2)
@@ -265,7 +265,7 @@ ESfun(suppFig5D2[,1],suppFig5D2[,2]) # explanatory power
 trimpb2(suppFig5D2[,1],suppFig5D2[,2],tr=0.2,alpha=0.05,nboot=2000,WIN=F,win=0.1)
 ```
 ### supplementary Figure 5 D4
-Peak Timing of a Down-state onset
+Sust. UP-State MUA PFC
 ```{r}
 suppFig5D4 <- read.csv("suppFig5D4.txt ")
 boxplot(suppFig5D4)
@@ -276,6 +276,7 @@ ESfun(suppFig5D4[,1],suppFig5D4[,2]) # explanatory power
 trimpb2(suppFig5D4[,1],suppFig5D4[,2],tr=0.2,alpha=0.05,nboot=2000,WIN=F,win=0.1)
 ```
 ## supplementary Figure 5 E2
+Sust. UP-State Delta RTC
 ```{r}
 suppFig5E2 <- read.csv("suppFig5E2.txt ")
 boxplot(suppFig5E2)
@@ -286,6 +287,7 @@ linconb(suppFig5E2,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means 
 ```
 
 ## supplementary Figure 5 E3
+Sust. UP-State Delta PFC
 ```{r}
 suppFig5E3 <- read.csv("suppFig5E3.txt ")
 boxplot(suppFig5E3)
@@ -294,6 +296,9 @@ btrim(suppFig5E3, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group me
 M = cbind(c(1,-1,0,0),c(0,0,1,-1)) # matrix for group testing
 linconb(suppFig5E3,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
 ```
+
+## supplementary Figure 5 F2
+Sust. UP-State Spindle RTC
 ```{r}
 suppFig5F2 <- read.csv("suppFig5F2.txt ")
 boxplot(suppFig5F2)
@@ -303,6 +308,9 @@ yuenbt(suppFig5F2[,1], suppFig5F2[,2],tr=0.2,alpha=0.05,nboot=599,side=F)
 ESfun(suppFig5F2[,1], suppFig5F2[,2]) # explanatory power
 trimpb2(suppFig5F2[,1], suppFig5F2[,2],tr=0.2,alpha=0.05,nboot=2000,WIN=F,win=0.1)
 ```
+
+## supplementary Figure 5 F3
+Sust. UP-State Spindle PFC
 ```{r}
 suppFig5F3 <- read.csv("suppFig5F3.txt ")
 boxplot(suppFig5F3)
