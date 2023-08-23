@@ -185,9 +185,9 @@ summary(supp_data_fig3E2)
 
 
 ### Figure 4
-Down-State Delta Angle Distribution
+Delta and Down-State Phase Distribution
 ```{r}
-data_fig4B3 <- read.csv("fig4B3.txt ")
+data_fig4B3 <- read.csv("C:\\Users\\pdrfl\\DataAnalysis\\L&M_data_&_code\\Fig4\\fig4B3.txt ")
 boxplot(data_fig4B3)
 summary(data_fig4B3)
 # Bootstrap-t Methods for Comparing trimmed means
@@ -199,7 +199,7 @@ trimpb2(data_fig4B3[,1],data_fig4B3[,2],tr=0.2,alpha=0.05,nboot=2000,WIN=F,win=0
 ### supplementary Figure 5 A1
 Peak Amplitude Down-onset
 ```{r}
-suppFig4A1 <- read.csv("suppFig4A1.txt ")
+suppFig4A1 <- read.csv("suppFig5A1.txt ")
 boxplot(suppFig4A1)
 summary(suppFig4A1)
 # Bootstrap-t Methods for Comparing trimmed means
@@ -210,7 +210,7 @@ trimpb2(suppFig4A1[,1],suppFig4A1[,2],tr=0.2,alpha=0.05,nboot=2000,WIN=F,win=0.1
 ### Supplementary Figure 5 A2
 Down-state onset Variance after a SWR
 ```{r}
-suppFig4A2 <- read.csv("suppFig4A2.txt ")
+suppFig4A2 <- read.csv("suppFig5A2.txt ")
 boxplot(suppFig4A2)
 summary(suppFig4A2)
 # Bootstrap-t Methods for Comparing trimmed means
@@ -222,7 +222,7 @@ trimpb2(suppFig4A2[,1],suppFig4A2[,2],tr=0.2,alpha=0.05,nboot=2000,WIN=F,win=0.1
 ### supplementary Figure 5 A3
 Peak Timing of a Down-state onset
 ```{r}
-suppFig4A3 <- read.csv("suppFig4A3.txt ")
+suppFig4A3 <- read.csv("suppFig5A3.txt ")
 boxplot(suppFig4A3)
 summary(suppFig4A3)
 # Bootstrap-t Methods for Comparing trimmed means
@@ -234,7 +234,7 @@ trimpb2(suppFig4A3[,1],suppFig4A3[,2],tr=0.2,alpha=0.05,nboot=2000,WIN=F,win=0.1
 ### supplementary Figure 5 A4
 Peak Timing of a Down-state onset
 ```{r}
-suppFig4A4 <- read.csv("suppFig4A4.txt ")
+suppFig4A4 <- read.csv("suppFig5A4.txt ")
 boxplot(suppFig4A4)
 summary(suppFig4A4)
 # Bootstrap-t Methods for Comparing trimmed means
@@ -245,12 +245,12 @@ trimpb2(suppFig4A4[,1],suppFig4A4[,2],tr=0.2,alpha=0.05,nboot=2000,WIN=F,win=0.1
 
 ## supplementary Figure 5 B1 and B2
 ```{r}
-suppFig5B1_2 <- read.csv("suppFig5B1_&B2.txt ")
-boxplot(suppFig5B1_2)
-summary(suppFig5B1_2)
-btrim(suppFig5B1_2, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+suppFig4B1_2 <- read.csv("suppFig5B1_&B2.txt ")
+boxplot(suppFig4B1_2)
+summary(suppFig4B1_2)
+btrim(suppFig4B1_2, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
 M = cbind(c(1,-1,0,0),c(0,0,1,-1),c(1,0,-1,0),c(0,1,0,-1)) # matrix for group testing
-linconb(suppFig5B1_2,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+linconb(suppFig4B1_2,con=M,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
 ```
 
 ### supplementary Figure 5 D2
@@ -333,9 +333,21 @@ linconb(data_fig5C1[,1:4],con=0,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group
 ```
 
 ### Figure 5 C2
-Replays and Coordination to UP and Down States of the RTC and PFC
+Replays and Coordination to UP-States of the RTC and PFC
 ```{r}
 data_fig5C2 <- read.csv("fig5C2.txt ")
+data_fig5C2 <- data_fig5C2[, 1:6]
+boxplot(data_fig5C2)
+summary(data_fig5C2)
+btrim(data_fig5C2, tr=0.2, grp=NA, g=NULL, dp=NULL, nboot=599) # trimmed group mean anova with bootstrap-t
+M = cbind(c(1,0,-1,0,0,0),c(0,1,-1,0,0,0),c(0,0,-1,1,0,0),c(0,0,-1,0,-1,0),c(0,0,-1,0,0,-1)) # matrix for group testing
+linconb(data_fig5C2,con=0,tr=0.2,alpha=0.05,nboot=599) # 20% trimmed group means with bootstrap-t method
+```
+
+### Figure 5 C3
+Replays and Coordination from Down States of the RTC and PFC
+```{r}
+data_fig5C2 <- read.csv("fig5C3.txt ")
 data_fig5C2 <- data_fig5C2[, 1:6]
 boxplot(data_fig5C2)
 summary(data_fig5C2)
